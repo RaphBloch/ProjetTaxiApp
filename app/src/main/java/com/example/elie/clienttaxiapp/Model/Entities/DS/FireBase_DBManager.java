@@ -10,6 +10,6 @@ public class FireBase_DBManager
    {
        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello Worls");
+        myRef.setValue("Hello World");
    }
 }
