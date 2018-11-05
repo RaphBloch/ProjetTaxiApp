@@ -112,8 +112,8 @@ public class ClientRequest implements Serializable
         return DepartureLatitude;
     }
 
-    public void setDepartureLatitude(double departureLatitude) {
-        DepartureLatitude=departureLatitude;
+    public void setDepartureLatitude(double departureLatitud) {
+        DepartureLatitude=departureLatitud;
 
     }
 

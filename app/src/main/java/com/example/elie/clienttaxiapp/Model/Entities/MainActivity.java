@@ -1,10 +1,11 @@
 
-package com.example.elie.clienttaxiapp;
+package com.example.elie.clienttaxiapp.Model.Entities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.elie.clienttaxiapp.Model.Entities.DataSource.FireBase_DBManager;
+
+import com.example.elie.clienttaxiapp.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
         myRef.setValue("Hello World");
 
-        FireBase_DBManager.test();
+
     }
 }
