@@ -1,0 +1,141 @@
+package com.example.elie.clienttaxiapp.Model.Entities.Entities;
+
+import java.io.Serializable;
+
+
+
+public class ClientRequest implements Serializable
+
+{
+    private String  Name;
+    private String  Mail;
+    private String Phone;
+    private int id;
+    private ClientRequestStatus status;
+    private double DepartureLongitude;
+    private double DepartureLatitude;
+    private double ArrivalLongitude;
+    private double ArrivalLatitude;
+
+
+     //region ****** Constructors *****
+
+    public ClientRequest()
+    {
+        Name="";
+        id=0;
+        Phone="0584769854";
+        status= ClientRequestStatus._Waiting;
+        Mail="b@";
+        DepartureLatitude=90;
+        DepartureLongitude=0;
+        ArrivalLatitude=89;
+        ArrivalLongitude=2;
+    }
+
+
+    public ClientRequest(ClientRequest c)
+    {
+        Name=c.getName();
+        id=c.getId();
+        Phone=c.getPhone();
+        status=c.getStatus();
+        Mail=c.getMail();
+        DepartureLatitude=c.getDepartureLatitude();
+        DepartureLongitude=c.DepartureLongitude;
+        ArrivalLatitude=c.ArrivalLatitude;
+        ArrivalLongitude=c.ArrivalLongitude;
+    }
+
+    //endregion
+
+
+
+
+    //region ***** Getters/Setters *****
+    public String getName()
+    {
+        return Name;
+    }
+
+    public void setName(String name)
+    {
+        Name = name;
+    }
+
+    public void setMail(String mail) {
+        Mail = mail;
+    }
+
+    public String getMail()
+    {
+        return Mail;
+    }
+
+    public String getPhone()
+    {
+        return Phone;
+    }
+
+    public void setPhone(String phone)
+    {
+        Phone = phone;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public ClientRequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ClientRequestStatus status) {
+        this.status = status;
+    }
+
+    public double getDepartureLongitude() {
+        return DepartureLongitude;
+    }
+
+    public void setDepartureLongitude(double departureLongitude) {
+        DepartureLongitude = departureLongitude;
+    }
+
+    public double getDepartureLatitude() {
+        return DepartureLatitude;
+    }
+
+    public void setDepartureLatitude(double departureLatitude) {
+        DepartureLatitude=departureLatitude;
+
+    }
+
+    public double getArrivalLongitude() {
+        return ArrivalLongitude;
+    }
+
+    public void setArrivalLongitude(double arrivalLongitude) {
+        ArrivalLongitude = arrivalLongitude;
+    }
+
+    public double getArrivalLatiude()
+    {
+        return ArrivalLatitude;
+    }
+
+    public void setArrivalLatiude(double arrivalLatitude) {
+        ArrivalLatitude = arrivalLatitude;
+    }
+
+    //endregion
+}
+
+
+
