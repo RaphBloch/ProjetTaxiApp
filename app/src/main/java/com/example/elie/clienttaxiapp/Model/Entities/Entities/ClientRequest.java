@@ -24,11 +24,11 @@ public class ClientRequest implements Serializable
 
     public ClientRequest()
     {
-        Name="";
+        Name="Raphael";
         id=0;
         Phone="0584769854";
         status= ClientRequestStatus._Waiting;
-        Mail="b@";
+        Mail="b@gmail";
         DepartureLatitude=90;
         DepartureLongitude=0;
         ArrivalLatitude=89;
@@ -116,8 +116,8 @@ public class ClientRequest implements Serializable
         return DepartureLatitude;
     }
 
-    public void setDepartureLatitude(double departureLatitud) {
-        DepartureLatitude=departureLatitud;
+    public void setDepartureLatitude(double departureLatitude) {
+        DepartureLatitude=departureLatitude;
 
     }
 
@@ -129,12 +129,12 @@ public class ClientRequest implements Serializable
         ArrivalLongitude = arrivalLongitude;
     }
 
-    public double getArrivalLatiude()
+    public double getArrivalLatitude()
     {
         return ArrivalLatitude;
     }
 
-    public void setArrivalLatiude(double arrivalLatitude) {
+    public void setArrivalLatitude(double arrivalLatitude) {
         ArrivalLatitude = arrivalLatitude;
     }
 

@@ -37,7 +37,7 @@ public class FireBase_DBManager
     }
 
 
-    private static void addClientToFireBase(final ClientRequest client,final Action<String> action)
+    public static void addClientToFireBase(final ClientRequest client,final Action<String> action)
     {
         String key=client.getName();
         ClientsRef.child(key).setValue(client).addOnSuccessListener(new OnSuccessListener<Void>() {
