@@ -11,6 +11,15 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FireBase_DBManager
 
 {
+
+    /***
+     * Interface Action
+     * @param <T> template : type of object for the implementation of the interface
+     *      OnSuccess : It receives the name of the client that is the key
+     *      OnFailure : It tells us if there is a failure in the loading and throws exception
+     *      OnProgress : It tells us the progress of the load of the data with a message
+     *
+     */
     public interface Action<T>
     {
         void OnSuccess(T obj);
@@ -28,15 +37,30 @@ public class FireBase_DBManager
     }
 
 
-
+    // creation of my databaseReference
      static DatabaseReference ClientsRef;
      static
     {
         FirebaseDatabase data=FirebaseDatabase.getInstance();
+        //The reference of my data of clients is Clients
         ClientsRef= data.getReference("Clients");
     }
 
 
+    /***
+     * Function : addClienttoFireBase
+     *
+     * @param client A clientRequest
+     * @param action The interface of the firebase
+     *
+     *  The function must add a clientReauest to my firebase.
+     *
+     *  Explication :    There is the implementation of the the 3 functions of the interface.
+     *      OnSuccess : It receives the name of the client that is the key
+     *      OnFailure : It tells us if there is a failure in the loading and throws exception
+     *      OnProgress : It tells us the progress of the load of the data with a message
+
+     */
     public static void addClientToFireBase(final ClientRequest client,final Action<String> action)
     {
         String key=client.getName();
