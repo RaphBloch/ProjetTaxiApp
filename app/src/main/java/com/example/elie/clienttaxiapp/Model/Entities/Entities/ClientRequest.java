@@ -1,5 +1,7 @@
 package com.example.elie.clienttaxiapp.Model.Entities.Entities;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 
@@ -82,6 +84,8 @@ public class ClientRequest implements Serializable
         Phone = phone;
     }
 
+
+    @Exclude
     public int getId()
     {
         return id;

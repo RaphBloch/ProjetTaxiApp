@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.example.elie.clienttaxiapp.Model.Entities.DS.FireBase_DBManager;
 import com.example.elie.clienttaxiapp.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
         myRef.setValue("Hello World");
+
+
 
 
     }
