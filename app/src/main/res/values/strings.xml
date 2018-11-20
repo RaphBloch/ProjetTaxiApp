@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ClientTaxiApp</string>
     <string name="Mic">Michael</string>
+    <string name="Name" />
+    <string name="Mail">Mail</string>
+    <string name="name">Name</string>
+    <string name="Phone">Phone</string>
+    <string name="Destination">Destination</string>
+    <string name="ID">ID</string>
+    <string name="Send">GetTaxi</string>
 </resources>

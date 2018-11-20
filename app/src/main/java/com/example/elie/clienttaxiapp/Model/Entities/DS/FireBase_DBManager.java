@@ -2,13 +2,14 @@ package com.example.elie.clienttaxiapp.Model.Entities.DS;
 
 import android.support.annotation.NonNull;
 
+import com.example.elie.clienttaxiapp.Model.Entities.Backend.Backend;
 import com.example.elie.clienttaxiapp.Model.Entities.Entities.ClientRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FireBase_DBManager
+public class FireBase_DBManager implements Backend
 
 {
 
@@ -46,6 +47,32 @@ public class FireBase_DBManager
         ClientsRef= data.getReference("Clients");
     }
 
+    /***
+     * Function : addClientRequest
+     * @param clientRequest the client to add
+     * Meaning : calls the function that add the cleint to the firebase
+     */
+ @Override
+    public   void addClientRequest(final  ClientRequest clientRequest)
+    {
+        addClientToFireBase(clientRequest, new Action<String>() {
+            @Override
+            public void OnSuccess(String obj) {
+
+            }
+
+            @Override
+            public void OnProgress(String status, double percent) {
+
+            }
+
+            @Override
+            public void OnFailure(Exception exception) {
+
+            }
+        });
+    }
+
 
     /***
      * Function : addClienttoFireBase
@@ -61,9 +88,9 @@ public class FireBase_DBManager
      *      OnProgress : It tells us the progress of the load of the data with a message
 
      */
-    public static void addClientToFireBase(final ClientRequest client,final Action<String> action)
+    private static void addClientToFireBase(final ClientRequest client,final Action<String> action)
     {
-        String key=client.getName();
+        String key=String.valueOf(client.getId());
         ClientsRef.child(key).setValue(client).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

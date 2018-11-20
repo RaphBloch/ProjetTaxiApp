@@ -1,34 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Model.Entities.MainActivity">
 
-    <TextView
+
+    <EditText
+        android:id="@+id/Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="78dp"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/Mail"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Name"
+        android:layout_marginTop="158dp"
+        android:ems="10"
+        android:hint="@string/Mail"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/Tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Name"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="@string/Phone"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/Dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Name"
+        android:layout_marginBottom="165dp"
+        android:ems="10"
+        android:hint="@string/Destination"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Name"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/ID"
+        android:inputType="number" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="56dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="61dp"
+        android:background="@color/Blue"
+        android:textColor="@color/Red"
+        android:layout_marginStart="104dp"
+        android:text="@string/Send" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="@string/Mic"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="195dp" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
