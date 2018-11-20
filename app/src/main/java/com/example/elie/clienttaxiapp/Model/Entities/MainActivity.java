@@ -196,7 +196,7 @@ private void getLocation()
         getLocation();
         ClientRequest c= getClient();
         FireBase_DBManager f = new FireBase_DBManager();
-        f.addClientRequest(c);
+        //f.addClientRequest(c);
     }
 }
 
