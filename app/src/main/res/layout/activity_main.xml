@@ -28,7 +28,7 @@
         android:layout_marginTop="158dp"
         android:ems="10"
         android:hint="@string/Mail"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/Tel"

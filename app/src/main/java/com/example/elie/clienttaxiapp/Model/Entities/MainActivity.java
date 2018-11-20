@@ -19,6 +19,8 @@ import java.lang.String;
 import java.util.Locale;
 import java.util.List;
 
+import com.example.elie.clienttaxiapp.Model.Entities.Backend.Backend;
+import com.example.elie.clienttaxiapp.Model.Entities.Backend.Backend_Factory;
 import com.example.elie.clienttaxiapp.Model.Entities.DS.FireBase_DBManager;
 import com.example.elie.clienttaxiapp.Model.Entities.Entities.ClientRequest;
 import com.example.elie.clienttaxiapp.R;
@@ -34,6 +36,7 @@ public   class MainActivity extends AppCompatActivity implements View.OnClickLis
 
     //region ***** Fields ******
     EditText ID;
+    Backend_Factory backend_factory=new Backend_Factory();
     EditText Name;
     EditText Mail;
     EditText Phone;
@@ -195,7 +198,7 @@ private void getLocation()
     {
         getLocation();
         ClientRequest c= getClient();
-        FireBase_DBManager f = new FireBase_DBManager();
+        FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
         f.addClientRequest(c);
     }
 
