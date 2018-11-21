@@ -8,4 +8,7 @@
     <string name="Destination">Destination</string>
     <string name="ID">ID</string>
     <string name="Send">GetTaxi</string>
+    <string name="Presentation">Present Yourself :</string>
+    <string name="destination">What is your destination ?</string>
+    <string name="Welcome">Welcome !</string>
 </resources>
