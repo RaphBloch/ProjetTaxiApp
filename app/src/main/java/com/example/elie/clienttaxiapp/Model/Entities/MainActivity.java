@@ -1,11 +1,13 @@
 
 package com.example.elie.clienttaxiapp.Model.Entities;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Build;
 import android.Manifest;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,17 +26,18 @@ import com.example.elie.clienttaxiapp.Model.Entities.Backend.Backend_Factory;
 import com.example.elie.clienttaxiapp.Model.Entities.DS.FireBase_DBManager;
 import com.example.elie.clienttaxiapp.Model.Entities.Entities.ClientRequest;
 import com.example.elie.clienttaxiapp.R;
+import com.example.elie.clienttaxiapp.RegisterActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 
 
-public   class MainActivity extends AppCompatActivity implements View.OnClickListener
+public   class MainActivity extends AppCompatActivity
 {
 
 
-    //region ***** Fields ******
+    /*//region ***** Fields ******
     EditText ID;
     Backend_Factory backend_factory=new Backend_Factory();
     EditText Name;
@@ -47,7 +50,8 @@ public   class MainActivity extends AppCompatActivity implements View.OnClickLis
     LocationManager locationManager;
     LocationListener locationListener;
 
-  //endregion
+  //endregion*/
+    private Button enterBtn;
 
 
 
@@ -56,9 +60,23 @@ public   class MainActivity extends AppCompatActivity implements View.OnClickLis
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FindViews();
-    }
+        enterBtn = (Button) findViewById(R.id.enterBtn);
 
+        enterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent (MainActivity.this , RegisterActivity.class);
+                startActivity(intent);
+                Toast toast = Toast.makeText(MainActivity.this,"Welcome",Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER,0,0);
+                toast.show();
+
+            }
+        });
+       // FindViews();
+    }
+/*
   private void FindViews()
 
   {
@@ -116,7 +134,7 @@ private void getLocation()
              locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,10,0,locationListener);
 
         }
-   }
+   }*/
 
     /*public static GeoPoint getGeoPointFromAddress(String locationAddress) {
         GeoPoint locationPoint = null;
@@ -151,6 +169,7 @@ private void getLocation()
 
     }*/
 
+    /*
     @SuppressLint("MissingPermission")
  @Override
  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
@@ -194,6 +213,7 @@ private void getLocation()
 
 
 
+
     @Override
     public void onClick(View v)
     {
@@ -201,11 +221,15 @@ private void getLocation()
         ClientRequest c= getClient();
         FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
         f.addClientRequest(c);
+        Toast toast = Toast.makeText(this ,getClient().toString() , Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+
     }
 
 
     //Hello WORLD
-
+*/
 
 }
 

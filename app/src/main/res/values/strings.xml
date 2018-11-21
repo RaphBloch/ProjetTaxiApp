@@ -11,4 +11,5 @@
     <string name="Presentation">Present Yourself :</string>
     <string name="destination">What is your destination ?</string>
     <string name="Welcome">Welcome !</string>
+    <string name="enter">Get a taxi</string>
 </resources>

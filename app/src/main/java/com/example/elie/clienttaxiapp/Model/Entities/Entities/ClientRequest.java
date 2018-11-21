@@ -138,6 +138,11 @@ public class ClientRequest implements Serializable
         ArrivalLatitude = arrivalLatitude;
     }
 
+    @Override
+    public String toString() {
+        return "\n Mr "+getName()+" ID: "+getId()+"\n Your request your request is being processed ";
+    }
+
     //endregion
 }
 
