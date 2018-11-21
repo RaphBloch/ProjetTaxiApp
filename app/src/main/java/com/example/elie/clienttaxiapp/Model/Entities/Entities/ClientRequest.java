@@ -85,7 +85,7 @@ public class ClientRequest implements Serializable
     }
 
 
-    @Exclude
+
     public int getId()
     {
         return id;
@@ -129,6 +129,12 @@ public class ClientRequest implements Serializable
         ArrivalLongitude = arrivalLongitude;
     }
 
+    //To get simple representation of the client with Name and ID
+    public String getRepresentation()
+    {
+        return "\n Mr "+getName()+" ID: "+getId();
+    }
+
     public double getArrivalLatitude()
     {
         return ArrivalLatitude;
@@ -140,7 +146,7 @@ public class ClientRequest implements Serializable
 
     @Override
     public String toString() {
-        return "\n Mr "+getName()+" ID: "+getId()+"\n Your request your request is being processed ";
+        return "\n Mr "+getName()+" ID: "+getId()+"\n Your request  is being processed ";
     }
 
     //endregion

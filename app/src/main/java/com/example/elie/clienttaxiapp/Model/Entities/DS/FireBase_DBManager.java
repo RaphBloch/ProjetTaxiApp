@@ -90,7 +90,7 @@ public class FireBase_DBManager implements Backend
      */
     private static void addClientToFireBase(final ClientRequest client,final Action<String> action)
     {
-        String key=String.valueOf(client.getId());
+        String key=String.valueOf(client.getRepresentation());
         ClientsRef.child(key).setValue(client).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
