@@ -186,7 +186,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         client.setPhone(Phone.getText().toString());
         client.setMail(Mail.getText().toString());
         client.setName(Name.getText().toString());
-        client.setDestination(Destination.getText().toString());
         client.setDepartureLatitude(Departure_latitude);
         client.setDepartureLongitude(Departure_longitude);
         client.setArrivalLatitude(Arrival_latitude);
