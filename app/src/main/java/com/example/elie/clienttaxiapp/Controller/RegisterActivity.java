@@ -97,8 +97,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-
-
+    //region ***** GoogleMaps *****
     private void getLocation()
     {
 
@@ -140,9 +139,39 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-
     /***
-     * Function : getClient
+     * Function to get the latitude and the longitude of the destination that the user entered
+     * by using a Geocoder and its function getFromLocationName.
+     */
+    private void getDestination()
+    {
+
+        Geocoder gc = new Geocoder(this);
+        try
+        {
+            if(gc.isPresent()){
+                List<Address> list = gc.getFromLocationName(Destination.getText().toString(),1);
+                Address address = list.get(0);
+                Arrival_latitude = address.getLatitude();
+                Arrival_longitude= address.getLongitude();
+            }
+        }
+
+        catch (Exception exception )
+
+        {
+            Toast toast = Toast.makeText(this ,exception.toString(), Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+
+        }
+
+    }
+
+    //endregion
+
+
+    /**** Function : getClient
      * Explication: This function creates the client that the fields are the data that the user enters in the View .
      * This makes the link between the Entities and the ViewController
      * @return A clientRequest with new data
@@ -168,34 +197,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     /***
-     * Function to get the latitude and the longitude of the destination that the user entered
-     * by using a Geocoder and its function getFromLocationName.
+     * Function : OnClick
+     * @param v View
+     * The function that occur when I click on the Button . I calls to  the Localisation functions and then I add the client
+     *  to the FireBase . I send a Toast in order to get information to my user . Then all the view models come back to null
      */
- private void getDestination()
- {
-
-    Geocoder gc = new Geocoder(this);
-    try
-    {
-        if(gc.isPresent()){
-            List<Address> list = gc.getFromLocationName(Destination.getText().toString(),1);
-            Address address = list.get(0);
-            Arrival_latitude = address.getLatitude();
-            Arrival_longitude= address.getLongitude();
-    }
-    }
-
-    catch (Exception exception )
-
-        {
-            Toast toast = Toast.makeText(this ,exception.toString(), Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER,0,0);
-            toast.show();
-
-        }
-
- }
-
     @Override
     public void onClick(View v)
     {

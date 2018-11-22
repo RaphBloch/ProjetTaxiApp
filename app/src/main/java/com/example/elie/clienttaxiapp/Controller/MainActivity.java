@@ -16,22 +16,10 @@ public   class MainActivity extends AppCompatActivity
 {
 
 
-    /*//region ***** Fields ******
-    EditText ID;
-    Backend_Factory backend_factory=new Backend_Factory();
-    EditText Name;
-    EditText Mail;
-    EditText Phone;
-    EditText Destination;
-    Button GetTaxi;
-    double latitude=52;
-    double longitude=25;
-    LocationManager locationManager;
-    LocationListener locationListener;
-
-  //endregion*/
+    //region ***** Fields *****
     private Button enterBtn;
 
+    //endregion
 
 
     @Override
@@ -41,6 +29,14 @@ public   class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         enterBtn = (Button) findViewById(R.id.enterBtn);
 
+
+
+        /***
+         * Function : setOnClickListener
+         * @param  a new View.OnClickListener .
+         * The button subscribes to a OnClickListener with a new event
+         *  that is an intent that brings me to my Register Activity
+         */
         enterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
