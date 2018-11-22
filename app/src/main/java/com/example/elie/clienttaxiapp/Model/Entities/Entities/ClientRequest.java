@@ -14,6 +14,7 @@ public class ClientRequest implements Serializable
     private String Phone;
     private int id;
     private ClientRequestStatus status;
+    public String Destination;
     private double DepartureLongitude;
     private double DepartureLatitude;
     private double ArrivalLongitude;
@@ -29,6 +30,7 @@ public class ClientRequest implements Serializable
         Phone="0584769854";
         status= ClientRequestStatus._Waiting;
         Mail="b@gmail";
+        Destination="80 Avenue des Vosges, Strasbourg";
         DepartureLatitude=90;
         DepartureLongitude=0;
         ArrivalLatitude=89;
@@ -85,10 +87,20 @@ public class ClientRequest implements Serializable
     }
 
 
-
+    @Exclude
     public int getId()
     {
         return id;
+    }
+
+    public String getDestination()
+
+    {
+        return Destination;
+    }
+
+    public void setDestination(String destination) {
+        Destination = destination;
     }
 
     public void setId(int id)

@@ -44,8 +44,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText Phone;
     EditText Destination;
     Button GetTaxi;
-    double latitude=52;
-    double longitude=25;
+
+    double Departure_latitude=52;
+    double Departure_longitude=25;
+    double Arrival_latitude=52;
+    double Arrival_longitude=25;
     LocationManager locationManager;
     LocationListener locationListener;
 
@@ -75,8 +78,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onLocationChanged(Location location)
             {
-                latitude=location.getLatitude();
-                longitude=location.getLongitude();
+                Departure_latitude=location.getLatitude();
+                Departure_longitude=location.getLongitude();
             }
 
             @Override
@@ -151,10 +154,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         client.setPhone(Phone.getText().toString());
         client.setMail(Mail.getText().toString());
         client.setName(Name.getText().toString());
-        client.setDepartureLatitude(latitude);
-        client.setDepartureLongitude(longitude);
-        client.setArrivalLatitude(0);
-        client.setArrivalLongitude(0);
+        client.setDestination(Destination.getText().toString());
+        client.setDepartureLatitude(Departure_latitude);
+        client.setDepartureLongitude(Departure_longitude);
+        client.setArrivalLatitude(Arrival_latitude);
+        client.setArrivalLongitude(Arrival_longitude);
 
         return client;
     }
@@ -163,17 +167,47 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
 
+ private void getDestination()
+ {
+
+    Geocoder gc = new Geocoder(this);
+    try
+    {
+        if(gc.isPresent()){
+            List<Address> list = gc.getFromLocationName(Destination.getText().toString(),1);
+            Address address = list.get(0);
+            Arrival_latitude = address.getLatitude();
+            Arrival_longitude= address.getLongitude();
+    }
+    }
+
+    catch (Exception exception )
+
+        {
+            Toast toast = Toast.makeText(this ,exception.toString(), Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+
+        }
+
+ }
+
     @Override
     public void onClick(View v)
     {
         getLocation();
+        getDestination();
         ClientRequest c= getClient();
         FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
         f.addClientRequest(c);
-        Toast toast = Toast.makeText(this ,getClient().toString() , Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this ,c.toString() , Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
-
+        ID.setText("");
+        Name.setText("");
+        Destination.setText("");
+        Phone.setText("");
+        Mail.setText("");
     }
 
 }
