@@ -12,14 +12,14 @@
         android:roundIcon="@mipmap/taxiiconegrand"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Model.Entities.MainActivity">
+        <activity android:name=".Controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".Controller.RegisterActivity"></activity>
     </application>
 
 </manifest>

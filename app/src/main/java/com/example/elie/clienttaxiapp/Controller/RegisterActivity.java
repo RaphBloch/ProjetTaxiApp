@@ -1,12 +1,9 @@
-package com.example.elie.clienttaxiapp;
+package com.example.elie.clienttaxiapp.Controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.os.Build;
 import android.Manifest;
 import android.view.Gravity;
@@ -18,19 +15,14 @@ import android.location.*;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.annotation.SuppressLint;
-import org.json.*;
+
 import java.lang.String;
-import java.util.Locale;
 import java.util.List;
 
-import com.example.elie.clienttaxiapp.Model.Entities.Backend.Backend;
-import com.example.elie.clienttaxiapp.Model.Entities.Backend.Backend_Factory;
-import com.example.elie.clienttaxiapp.Model.Entities.DS.FireBase_DBManager;
-import com.example.elie.clienttaxiapp.Model.Entities.Entities.ClientRequest;
+import com.example.elie.clienttaxiapp.Model.Model.Backend.Backend_Factory;
+import com.example.elie.clienttaxiapp.Model.Model.DS.FireBase_DBManager;
+import com.example.elie.clienttaxiapp.Model.Model.Entities.ClientRequest;
 import com.example.elie.clienttaxiapp.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -62,10 +54,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         FindViews();
     }
 
+    /***
+     * Function : FindViews
+     * Explication : The function makes the link between the Fields of the Activity and the elements of the layout
+     * and set the events for the elements that need to subscribe to an event . Here the button . I also implements the
+     * location manager and the location listener .
+     */
     private void FindViews()
 
     {
-
         ID= (EditText) findViewById(R.id.ID);
         Name= (EditText) findViewById(R.id.Name);
         Phone= (EditText) findViewById(R.id.Tel);
@@ -132,6 +129,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, locationListener);
             }
             else {
+
+
                 Toast.makeText(this, "Until you grant the permission, we cannot display the location",
                         Toast.LENGTH_SHORT).show();
 
@@ -142,13 +141,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-
+    /***
+     * Function : getClient
+     * Explication: This function creates the client that the fields are the data that the user enters in the View .
+     * This makes the link between the Entities and the ViewController
+     * @return A clientRequest with new data
+     */
 
     public ClientRequest getClient()
 
     {
         ClientRequest client=new ClientRequest();
-
         int id= Integer.valueOf(ID.getText().toString());
         client.setId(id);
         client.setPhone(Phone.getText().toString());
@@ -164,9 +167,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-
-
-
+    /***
+     * Function to get the latitude and the longitude of the destination that the user entered
+     * by using a Geocoder and its function getFromLocationName.
+     */
  private void getDestination()
  {
 
