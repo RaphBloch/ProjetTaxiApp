@@ -1,5 +1,6 @@
 package com.example.elie.clienttaxiapp.Controller;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -52,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         FindViews();
+        getLocation();
     }
 
     /***
@@ -204,11 +206,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v)
     {
-        getLocation();
-        getDestination();
+
+         getDestination();
         ClientRequest c= getClient();
-        FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
-        f.addClientRequest(c);
+        /*FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
+        f.addClientRequest(c);*/
+       new MyTask().execute(c);
         Toast toast = Toast.makeText(this ,c.toString() , Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
@@ -218,5 +221,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Phone.setText("");
         Mail.setText("");
     }
+
+
+
+
+
+
+
+
+   private  class MyTask extends AsyncTask<ClientRequest,String,Void>
+   {
+       @Override
+       protected Void doInBackground(ClientRequest... clientRequests)
+       {
+
+           FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
+           f.addClientRequest(clientRequests[0]);
+           return null;
+       }
+   }
 
 }
