@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ClientTaxiApp</string>
+    <string name="app_name">GetTaxi</string>
     <string name="Mic">Michael</string>
     <string name="Name" />
     <string name="Mail">Mail</string>

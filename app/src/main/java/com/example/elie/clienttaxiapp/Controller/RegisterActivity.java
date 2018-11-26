@@ -1,11 +1,13 @@
 package com.example.elie.clienttaxiapp.Controller;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
 import android.os.Build;
 import android.Manifest;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +20,8 @@ import android.annotation.SuppressLint;
 
 import java.lang.String;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.example.elie.clienttaxiapp.Model.Model.Backend.Backend_Factory;
 import com.example.elie.clienttaxiapp.Model.Model.DS.FireBase_DBManager;
@@ -51,7 +55,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getLocation();
         FindViews();
+        login();
     }
 
     /***
@@ -204,11 +210,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v)
     {
-        getLocation();
+
         getDestination();
         ClientRequest c= getClient();
-        FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
-        f.addClientRequest(c);
+
+        new myTask().execute(c);
         Toast toast = Toast.makeText(this ,c.toString() , Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
@@ -217,6 +223,53 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Destination.setText("");
         Phone.setText("");
         Mail.setText("");
+
+    }
+
+    private void login(){
+        if (TextUtils.isEmpty(ID.getText().toString().trim())||TextUtils.isEmpty(Name.getText().toString().trim())||
+                TextUtils.isEmpty(Phone.getText().toString().trim())||TextUtils.isEmpty(Mail.getText().toString().trim())||
+                TextUtils.isEmpty(Destination.getText().toString().trim()))
+        {
+            ID.setError("Fields can't be Empty");
+            Name.setError("Fields can't be Empty");
+            Phone.setError("Fields can't be Empty");
+            Mail.setError("Fields can't be Empty");
+            Destination.setError("Fields can't be Empty");
+        }
+        else if (!emailValidator(Mail.getText().toString()))
+        {
+            Mail.setError("Please Enter Valid Email Address");
+        }
+        else
+        {
+            Toast.makeText(this ,"Login Successful",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //Email Validation Using Regex
+    public boolean emailValidator (String email)
+    {
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN ="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[_A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private  class myTask extends AsyncTask<ClientRequest,Void,Void>
+    {
+        @Override
+        protected Void doInBackground(ClientRequest... clientRequests)
+        {
+            FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
+            f.addClientRequest(clientRequests[0]);
+
+            return null;
+        }
     }
 
 }
+
+
