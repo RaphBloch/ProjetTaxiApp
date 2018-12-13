@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
         FindViews();
         getLocation();
-        login();
+
     }
 
     /***
@@ -212,6 +212,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     {
 
         getDestination();
+        login();
         ClientRequest c= getClient();
 
         new myTask().execute(c);
