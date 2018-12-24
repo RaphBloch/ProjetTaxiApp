@@ -28,6 +28,13 @@ import com.example.elie.clienttaxiapp.Model.Model.DS.FireBase_DBManager;
 import com.example.elie.clienttaxiapp.Model.Model.Entities.ClientRequest;
 import com.example.elie.clienttaxiapp.R;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+
+import javax.security.auth.Destroyable;
+
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,6 +54,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     double Arrival_longitude=25;
     LocationManager locationManager;
     LocationListener locationListener;
+
+    Location locationA = new Location("A");//= new Location(from);
+    Location locationB = new Location("B") ;//= new Location(to);
+
+    private PlaceAutocompleteFragment placeAutocompleteFragment1;
 
     //endregion
 
@@ -73,6 +85,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Name= (EditText) findViewById(R.id.Name);
         Phone= (EditText) findViewById(R.id.Tel);
         Mail= (EditText) findViewById(R.id.Mail);
+        placeAutocompleteFragment1 = (PlaceAutocompleteFragment)getFragmentManager().findFragmentById( R.id.place_autocomplete_fragment1 );
+        placeAutocompleteFragment1.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                locationA.setLatitude(place.getLatLng().latitude);
+                locationA.setLongitude(place.getLatLng().longitude);
+                // .getAddress().toString();//get place details here
+            }
+
+            @Override
+            public void onError(Status status) {
+
+            }
+        });
+
         Destination= (EditText) findViewById(R.id.Dest);
         GetTaxi= (Button) findViewById(R.id.Send);
         GetTaxi.setOnClickListener(this);
@@ -100,6 +127,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
         } ;
+
+
 
     }
 
@@ -194,6 +223,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         client.setName(Name.getText().toString());
         client.setDepartureLatitude(Departure_latitude);
         client.setDepartureLongitude(Departure_longitude);
+        client.setDestination(Destination.getText().toString());
         client.setArrivalLatitude(Arrival_latitude);
         client.setArrivalLongitude(Arrival_longitude);
 

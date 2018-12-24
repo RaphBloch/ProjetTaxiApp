@@ -14,14 +14,16 @@ public class ClientRequest implements Serializable
     private String Phone;
     private int id;
     private ClientRequestStatus status;
-    public String Destination;
+    private String Destination;
     private double DepartureLongitude;
     private double DepartureLatitude;
     private double ArrivalLongitude;
     private double ArrivalLatitude;
+    private int DriverId;
 
 
-     //region ****** Constructors *****
+
+//region ****** Constructors *****
 
     public ClientRequest()
     {
@@ -29,11 +31,13 @@ public class ClientRequest implements Serializable
         id=0;
         Phone="0584769854";
         status= ClientRequestStatus._Waiting;
+        Destination = "";
         Mail="b@gmail";
         DepartureLatitude=90;
         DepartureLongitude=0;
         ArrivalLatitude=89;
         ArrivalLongitude=2;
+        DriverId =0;
     }
 
 
@@ -48,6 +52,8 @@ public class ClientRequest implements Serializable
         DepartureLongitude=c.DepartureLongitude;
         ArrivalLatitude=c.ArrivalLatitude;
         ArrivalLongitude=c.ArrivalLongitude;
+        Destination =c.getDestination();
+        DriverId = c.getDriverId();
     }
 
     //endregion
@@ -83,6 +89,18 @@ public class ClientRequest implements Serializable
     public void setPhone(String phone)
     {
         Phone = phone;
+    }
+
+    public String getDestination () {return  Destination;}
+
+    public void  setDestination (String destination )  { Destination = destination; }
+
+    public int getDriverId() {
+        return DriverId;
+    }
+
+    public void setDriverId(int driverId) {
+        DriverId = driverId;
     }
 
 
