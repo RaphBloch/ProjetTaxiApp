@@ -7,17 +7,18 @@
     <uses-feature android:name="android.hardware.location.gps" />
 
 
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
+        android:icon="@mipmap/logof"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/taxiiconegrand"
+        android:roundIcon="@mipmap/logof_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAo7x9rglD9Yw0tprBeScXk_cT3EVraC2c" />
+            android:value="AIzaSyCimvgFgl_v_QAM-fFlkxW9m5wQPFaeu2w" />
 
         <activity android:name=".Controller.MainActivity">
             <intent-filter>

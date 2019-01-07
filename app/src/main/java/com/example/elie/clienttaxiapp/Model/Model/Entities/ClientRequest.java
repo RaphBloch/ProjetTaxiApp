@@ -20,6 +20,8 @@ public class ClientRequest implements Serializable
     private double ArrivalLongitude;
     private double ArrivalLatitude;
     private int DriverId;
+    private long DataTime;
+
 
 
 
@@ -38,6 +40,7 @@ public class ClientRequest implements Serializable
         ArrivalLatitude=89;
         ArrivalLongitude=2;
         DriverId =0;
+        DataTime =0;
     }
 
 
@@ -54,6 +57,7 @@ public class ClientRequest implements Serializable
         ArrivalLongitude=c.ArrivalLongitude;
         Destination =c.getDestination();
         DriverId = c.getDriverId();
+        DataTime=c.getDataTime();
     }
 
     //endregion
@@ -103,6 +107,13 @@ public class ClientRequest implements Serializable
         DriverId = driverId;
     }
 
+    public long getDataTime() {
+        return DataTime;
+    }
+
+    public void setDataTime(long dataTime) {
+        DataTime = dataTime;
+    }
 
     @Exclude
     public int getId()

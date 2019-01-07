@@ -30,7 +30,9 @@
               android:layout_marginBottom="15dp"
               android:text="@string/Presentation"
               android:textSize="18sp"
-              app:fontFamily="cursive" />
+            android:textStyle="bold"/>
+              <!--app:fontFamily="cursive" -->
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -85,14 +87,10 @@
 
     </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textViewDestination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/destination" />
 
 
-        <android.support.design.widget.TextInputLayout
+
+        <!--android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -103,17 +101,23 @@
                 android:hint="@string/Destination"
                 android:inputType="textPostalAddress" />
 
-        </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout-->
 
 
-
+        <TextView
+            android:id="@+id/textViewDestination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/destination"
+            android:textStyle="bold"/>
 
     <fragment
         android:id="@+id/place_autocomplete_fragment1"
         android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
         android:layout_weight="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,12 +126,15 @@
 
     <Button
         android:id="@+id/Send"
+        android:layout_marginTop="20dp"
         android:layout_width="150dp"
         android:layout_height="64dp"
         android:layout_gravity="center"
         android:background="@drawable/button_background"
         android:text="@string/Send"
-        android:textColor="@color/Blue" />
+        android:textColor="@color/colorbutton"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
 
 
 

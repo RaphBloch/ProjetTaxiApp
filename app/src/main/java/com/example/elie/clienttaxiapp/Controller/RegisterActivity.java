@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText Name;
     EditText Mail;
     EditText Phone;
-    EditText Destination;
+    //EditText Destination;
     Button GetTaxi;
 
     double Departure_latitude=52;
@@ -54,11 +54,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     double Arrival_longitude=25;
     LocationManager locationManager;
     LocationListener locationListener;
+     String Destination;
 
     Location locationA = new Location("A");//= new Location(from);
-    Location locationB = new Location("B") ;//= new Location(to);
+    //Location locationB = new Location("B") ;//= new Location(to);
 
     private PlaceAutocompleteFragment placeAutocompleteFragment1;
+
 
     //endregion
 
@@ -91,6 +93,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onPlaceSelected(Place place) {
                 locationA.setLatitude(place.getLatLng().latitude);
                 locationA.setLongitude(place.getLatLng().longitude);
+                Destination= place.getAddress().toString();
+
                 // .getAddress().toString();//get place details here
             }
 
@@ -100,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        Destination= (EditText) findViewById(R.id.Dest);
+        //Destination= (EditText) findViewById(R.id.Dest);
         GetTaxi= (Button) findViewById(R.id.Send);
         GetTaxi.setOnClickListener(this);
         locationManager= (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -178,7 +182,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * Function to get the latitude and the longitude of the destination that the user entered
      * by using a Geocoder and its function getFromLocationName.
      */
-    private void getDestination()
+    /*private void getDestination()
     {
 
         Geocoder gc = new Geocoder(this);
@@ -201,7 +205,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         }
 
-    }
+    }*/
 
     //endregion
 
@@ -223,9 +227,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         client.setName(Name.getText().toString());
         client.setDepartureLatitude(Departure_latitude);
         client.setDepartureLongitude(Departure_longitude);
-        client.setDestination(Destination.getText().toString());
-        client.setArrivalLatitude(Arrival_latitude);
-        client.setArrivalLongitude(Arrival_longitude);
+        client.setDestination(Destination);
+        client.setArrivalLatitude(locationA.getLatitude());
+        client.setArrivalLongitude(locationA.getLongitude());
+        //client.setDataTime(System.currentTimeMillis()/1000);
 
         return client;
     }
@@ -241,7 +246,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v)
     {
 
-        getDestination();
+        //getDestination();
+        Toast.makeText(this,Destination+String.valueOf(locationA.getLatitude()),Toast.LENGTH_LONG).show();
+
         login();
         ClientRequest c= getClient();
 
@@ -251,7 +258,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         toast.show();
         ID.setText("");
         Name.setText("");
-        Destination.setText("");
+        //Destination.setText("");
         Phone.setText("");
         Mail.setText("");
 
@@ -259,19 +266,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void login(){
         if (TextUtils.isEmpty(ID.getText().toString().trim())||TextUtils.isEmpty(Name.getText().toString().trim())||
-                TextUtils.isEmpty(Phone.getText().toString().trim())||TextUtils.isEmpty(Mail.getText().toString().trim())||
-                TextUtils.isEmpty(Destination.getText().toString().trim()))
+                TextUtils.isEmpty(Phone.getText().toString().trim())||TextUtils.isEmpty(Mail.getText().toString().trim()))
+            //|| TextUtils.isEmpty(Destination.getText().toString().trim()))
         {
             ID.setError("Fields can't be Empty");
             Name.setError("Fields can't be Empty");
             Phone.setError("Fields can't be Empty");
             Mail.setError("Fields can't be Empty");
-            Destination.setError("Fields can't be Empty");
+           // Destination.setError("Fields can't be Empty");
         }
         else if (!emailValidator(Mail.getText().toString()))
         {
             Mail.setError("Please Enter Valid Email Address");
         }
+        /*else if (!phoneValidator(Phone.getText().toString()))
+        {
+            Toast.makeText(this,"nbr :"+Integer.valueOf(Phone.getText().toString()),Toast.LENGTH_SHORT).show();
+            Phone.setError("Please Enter Valid Phone Number (minimun 10 number) !");
+        }*/
         else
         {
             Toast.makeText(this ,"Login Successful",Toast.LENGTH_SHORT).show();
@@ -287,6 +299,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    public boolean phoneValidator (String phonenumber)
+    {
+       return (Integer.parseInt(phonenumber) == 9 );
+
+
     }
 
     private  class myTask extends AsyncTask<ClientRequest,Void,Void>

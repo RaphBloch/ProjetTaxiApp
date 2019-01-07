@@ -9,7 +9,7 @@
     <string name="ID">ID</string>
     <string name="Send">Get a Taxi</string>
     <string name="Presentation">Present Yourself :</string>
-    <string name="destination">What is your destination ?</string>
+    <string name="destination">Chose your destination : </string>
     <string name="Welcome">Welcome !</string>
     <string name="enter">Get a taxi</string>
 </resources>
