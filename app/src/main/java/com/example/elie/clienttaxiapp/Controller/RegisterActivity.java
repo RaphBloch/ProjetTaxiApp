@@ -327,7 +327,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void OnProgress(String status, double percent) {
 
-                    Toast.makeText(getBaseContext(), "Name : " + status ,Toast.LENGTH_SHORT).show();
 
                 }
 
