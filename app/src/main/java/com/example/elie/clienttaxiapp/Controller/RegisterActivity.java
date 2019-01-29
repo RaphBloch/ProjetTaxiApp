@@ -19,10 +19,12 @@ import android.content.pm.PackageManager;
 import android.annotation.SuppressLint;
 
 import java.lang.String;
+import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.example.elie.clienttaxiapp.Model.Model.Backend.Backend;
 import com.example.elie.clienttaxiapp.Model.Model.Backend.Backend_Factory;
 import com.example.elie.clienttaxiapp.Model.Model.DS.FireBase_DBManager;
 import com.example.elie.clienttaxiapp.Model.Model.Entities.ClientRequest;
@@ -41,7 +43,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     //region ***** Fields ******
     EditText ID;
-    Backend_Factory backend_factory=new Backend_Factory();
+    static  FireBase_DBManager f = (FireBase_DBManager)
+
+            Backend_Factory.getFactory();
     EditText Name;
     EditText Mail;
     EditText Phone;
@@ -230,7 +234,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         client.setDestination(Destination);
         client.setArrivalLatitude(locationA.getLatitude());
         client.setArrivalLongitude(locationA.getLongitude());
-        //client.setDataTime(System.currentTimeMillis()/1000);
+        client.setDataTime(Calendar.getInstance().getTime().getTime());
 
         return client;
     }
@@ -247,7 +251,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     {
 
         //getDestination();
-        Toast.makeText(this,Destination+String.valueOf(locationA.getLatitude()),Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,Destination+String.valueOf(locationA.getLatitude()),Toast.LENGTH_LONG).show();
 
         login();
         ClientRequest c= getClient();
@@ -286,7 +290,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }*/
         else
         {
-            Toast.makeText(this ,"Login Successful",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this ,"Login Successful",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -313,8 +317,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         @Override
         protected Void doInBackground(ClientRequest... clientRequests)
         {
-            FireBase_DBManager f = (FireBase_DBManager)backend_factory.getfactory();
-            f.addClientRequest(clientRequests[0]);
+
+            f.addClientToFireBase(clientRequests[0], new FireBase_DBManager.Action<String>() {
+                @Override
+                public void OnSuccess(String obj) {
+                    Toast.makeText(getBaseContext(), "Name : " + obj ,Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void OnProgress(String status, double percent) {
+
+                    Toast.makeText(getBaseContext(), "Name : " + status ,Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void OnFailure(Exception exception) {
+                    Toast.makeText(getBaseContext(), "Error : " + exception ,Toast.LENGTH_SHORT).show();
+
+                }
+            });
 
             return null;
         }

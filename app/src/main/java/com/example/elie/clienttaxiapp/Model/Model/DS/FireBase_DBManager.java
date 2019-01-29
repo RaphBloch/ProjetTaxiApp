@@ -13,6 +13,20 @@ public class FireBase_DBManager implements Backend
 
 {
 
+    private static FireBase_DBManager fireBase_dbManager=null;
+
+    private FireBase_DBManager() {
+    }
+
+
+    public static FireBase_DBManager getFireBase_dbManager()
+    {
+        if (fireBase_dbManager== null)
+        {
+            fireBase_dbManager = new FireBase_DBManager();
+        }
+        return fireBase_dbManager;
+    }
     /***
      * Interface Action
      * @param <T> template : type of object for the implementation of the interface
@@ -21,14 +35,7 @@ public class FireBase_DBManager implements Backend
      *      OnProgress : It tells us the progress of the load of the data with a message
      *
      */
-    public interface Action<T>
-    {
-        void OnSuccess(T obj);
 
-        void OnProgress(String status,double percent);
-
-        void OnFailure(Exception exception);
-    }
 
     public interface NotifyDataChange<T>
     {
@@ -47,31 +54,7 @@ public class FireBase_DBManager implements Backend
         ClientsRef= data.getReference("Clients");
     }
 
-    /***
-     * Function : addClientRequest
-     * @param clientRequest the client to add
-     * Meaning : calls the function that add the cleint to the firebase
-     */
- @Override
-    public   void addClientRequest(final  ClientRequest clientRequest)
-    {
-        addClientToFireBase(clientRequest, new Action<String>() {
-            @Override
-            public void OnSuccess(String obj) {
 
-            }
-
-            @Override
-            public void OnProgress(String status, double percent) {
-
-            }
-
-            @Override
-            public void OnFailure(Exception exception) {
-
-            }
-        });
-    }
 
 
     /***
@@ -88,7 +71,8 @@ public class FireBase_DBManager implements Backend
      *      OnProgress : It tells us the progress of the load of the data with a message
 
      */
-    private static void addClientToFireBase(final ClientRequest client,final Action<String> action)
+    @Override
+    public   void addClientToFireBase(final ClientRequest client,final Action<String> action)
     {
         String key=String.valueOf(client.getId());
         ClientsRef.child(key).setValue(client).addOnSuccessListener(new OnSuccessListener<Void>() {

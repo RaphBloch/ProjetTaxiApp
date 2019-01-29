@@ -2,23 +2,19 @@ package com.example.elie.clienttaxiapp.Model.Model.Backend;
 
 import com.example.elie.clienttaxiapp.Model.Model.DS.FireBase_DBManager;
 
-public class Backend_Factory
+public final   class Backend_Factory
 
 {
 
-    Backend instance=new FireBase_DBManager();
 
 
     /***
      * Function : getFactory
-     * @return a unique instance of Backend that is FireBase_DBManager
+     * @return a unique instance of FireBase_DBManager
      */
-  public Backend getfactory()
+  public static Backend getFactory()
     {
-        if (instance == null)
-            instance = new FireBase_DBManager();
-
-        return instance;
+        return FireBase_DBManager.getFireBase_dbManager();
     }
 
 }
